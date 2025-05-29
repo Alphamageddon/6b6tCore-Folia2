@@ -1,0 +1,29 @@
+name: blbiLogin
+version: '${version}'
+main: com.blbilink.blbilogin.BlbiLogin
+api-version: '1.20'
+folia-supported: true
+depend:
+  - blbiLibrary
+commands:
+  login:
+    description: "Login command"
+    usage: /login <password>
+    aliases: [l]
+  register:
+    description: "Register command"
+    usage: /register <password>
+    aliases: [reg]
+  blbilogin:
+    description: "Main plugin command"
+    usage: /blbilogin <args>
+  resetpassword:
+    description: "Reset password"
+    aliases:
+      - resetpasswd
+      - resetpass
+      - resetpw
+  kill:
+    description: "Kill yourself"
+    aliases:
+      - suicide

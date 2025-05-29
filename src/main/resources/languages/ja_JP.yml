@@ -1,0 +1,35 @@
+version: 2.0.0
+Language: "日本語 (Japanese)"
+loadedLanguage: "言語ファイルを読み込みました: %s"
+
+logEnable: "blbiLoginシステムが注入されました。"
+logPlayerJoin: "プレイヤー %s がサーバーに入ったのを検出しました。プレイヤーの移動をブロックしました。"
+logNoLoginTryMove: "ログインしていないプレイヤー %s が移動を試みました。元の位置に戻されました。"
+
+msgCommandWrong: "§c入力されたコマンドが間違っています§f。正しい使用方法は §6%s です"
+msgLoginSuccess: "ログインに成功しました。%s さん、お帰りなさい。"
+msgRegisterSuccess: "登録に成功しました。新しいプレイヤー %s さん、ようこそ。"
+msgAlreadyRegister: "すでに登録済みです。再登録の必要はありません。"
+msgNoPermission: "§fこの操作を実行する§c権限がありません§f。"
+msgReloaded: "§f設定ファイルと言語ファイルの§aリロードが完了しました。"
+msgLoginPasswordWrong: "§c入力されたパスワードが間違っています§f。確認して再試行してください"
+msgPlayerNotRegister: "まだ登録されていません。§6/register <パスワード> §fを使用して最初に登録してください。"
+msgCommandOnlyPlayer: "このコマンドはプレイヤーのみが使用できます"
+msgSavedLocation: "座標の保存に成功しました！"
+msgSavedConfigFile: "設定ファイルの保存に成功しました！"
+msgFailSaveConfigFile: "設定ファイルの保存に失敗しました...ファイルの権限を確認してください"
+
+kickByPasswordRested: "§fパスワードがリセットされました。再度ログインしてください"
+
+noLoginPlayerSendMessage: "現在§cログインしていません§f。操作が制限される可能性があります。/login <パスワード> を使用してログインしてください"
+noLoginPlayerSendTitle: "§l§fblbi§bLogin へようこそ"
+noLoginPlayerSendSubTitle: "§6/login <パスワード>§f を使用してゲームにログインしてください"
+noLoginPlayerSendActionBar: "現在§cログインしていません§f。操作が制限される可能性があります。/login <パスワード> を使用してログインしてください"
+
+noRegisterPlayerSendMessage: "現在§c登録されていません§f。操作が制限される可能性があります。/register <パスワード> を使用して登録してください"
+noRegisterPlayerSendTitle: "§l§fblbi§bLogin へようこそ"
+noRegisterPlayerSendSubTitle: "§6/register <パスワード>§f を使用してゲームに登録してください"
+noRegisterPlayerSendActionBar: "現在§c登録されていません§f。操作が制限される可能性があります。/register <パスワード> を使用して登録してください"
+
+successLoginSendTitle: "§a§lログイン成功"
+successLoginSendSubTitle: "お帰りなさい: §a%s"
