@@ -52,7 +52,8 @@ public class LoadFunction {
         Bukkit.getPluginManager().registerEvents(new PlayerSendMessage(), plugin);
         Bukkit.getPluginManager().registerEvents(new PlayerInteraction(), plugin);
         Bukkit.getPluginManager().registerEvents(new BlockPluginsCommand(), plugin);
-        Bukkit.getPluginManager().registerEvents(new com.blbilink.blbilogin.modules.dupe.ChestBoatDupeListener(60), plugin);
+        Bukkit.getPluginManager().registerEvents(new com.blbilink.blbilogin.modules.dupe.ChestBoatDupeListener(0), plugin);
+        Bukkit.getPluginManager().registerEvents(new com.blbilink.blbilogin.modules.events.SpamProtection(), plugin);
         Bukkit.getPluginManager().registerEvents(new com.blbilink.blbilogin.modules.events.WitherSkullExplodeFix(), plugin);
     }
 

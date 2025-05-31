@@ -33,3 +33,4 @@ noRegisterPlayerSendActionBar: "You are currently §cnot registered§f, operatio
 
 successLoginSendTitle: "§a§lLogin Successful"
 successLoginSendSubTitle: "Welcome back: §a%s"
+msgSpamDetected: "Please slow down, do not spam the chat."

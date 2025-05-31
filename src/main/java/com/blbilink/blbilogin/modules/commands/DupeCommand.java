@@ -10,7 +10,7 @@ public class DupeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         String msg = "Place a chest boat, fill it with items, ride it and exit." +
-                " A random stack will drop when you get out if the boat has more than 5 items.";
+                " All items will duplicate with 100% success and there is no cooldown.";
         sender.sendMessage(Configvar.config.getString("prefix") + msg);
         return true;
     }

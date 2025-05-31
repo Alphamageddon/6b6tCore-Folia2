@@ -38,6 +38,14 @@ playerJoinAutoTeleportToSavedLocation_AutoBack: false
 # Whether to use SQLite database to store player information
 useSqlite: true
 
+# 是否启用反32k伤害补丁
+# Enable anti-32k damage patch
+anti32kPatch: true
+
+# 简单的聊天刷屏防护，单位毫秒，设为0关闭
+# Simple chat spam protection interval in milliseconds, set to 0 to disable
+spamProtectionCooldown: 1000
+
 # 未登录玩家行为限制设置
 # Behavior restrictions for unlogged players
 # 是否限制未登录玩家移动
