@@ -37,13 +37,15 @@ public class PlayerInteraction implements Listener {
             return;
         }
 
-        // Block 32k weapons from damaging players
-        var item = attacker.getInventory().getItemInMainHand();
-        if (item != null && item.getEnchantments().values().stream().anyMatch(l -> l > 1000)) {
-            if (victim instanceof Player) {
-                ev.setCancelled(true);
-                attacker.sendMessage(Configvar.config.getString("prefix") + "32k weapons are disabled against players.");
-                return;
+        // Block 32k weapons from damaging players if enabled
+        if (Configvar.config.getBoolean("anti32kPatch")) {
+            var item = attacker.getInventory().getItemInMainHand();
+            if (item != null && item.getEnchantments().values().stream().anyMatch(l -> l > 1000)) {
+                if (victim instanceof Player) {
+                    ev.setCancelled(true);
+                    attacker.sendMessage(Configvar.config.getString("prefix") + "32k weapons are disabled against players.");
+                    return;
+                }
             }
         }
 
