@@ -1,4 +1,4 @@
-name: Java CI with Gradle and Dynamic Release
+name: Java CI with Gradle and Release
 
 on:
   push:
@@ -10,11 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # This is required for creating releases
+      contents: write  # Required for creating releases
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Fetch all history for all tags and branches
+          fetch-depth: 0
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -23,7 +25,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+        uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5
 
       - name: Verify local dependencies
         run: |
@@ -39,34 +41,32 @@ jobs:
           chmod +x ./gradlew
           ./gradlew build
 
-      - name: Generate Version
-        id: generate_version
+      - name: Generate random ID
+        id: gen_id
         run: |
-          TIMESTAMP=$(date +'%Y%m%d%H%M%S')
-          SHORT_SHA=$(git rev-parse --short HEAD)
-          echo "VERSION=${TIMESTAMP}-${SHORT_SHA}" >> $GITHUB_OUTPUT
+          RAND_STR=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 8)
+          echo "rand=$RAND_STR" >> $GITHUB_OUTPUT
 
-      - name: Create Release
+      - name: Rename JAR file
+        run: |
+          JAR_FILE=$(find ./build/libs -name "*.jar" -type f | head -n 1)
+          NEW_NAME="6b6tcore-${{ steps.gen_id.outputs.rand }}.jar"
+          mv "$JAR_FILE" "./build/libs/$NEW_NAME"
+          echo "JAR_PATH=./build/libs/$NEW_NAME" >> $GITHUB_ENV
+          echo "JAR_NAME=$NEW_NAME" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: release-${{ steps.generate_version.outputs.VERSION }}
-          release_name: Canary ${{ steps.generate_version.outputs.VERSION }}
+          tag_name: release-${{ steps.gen_id.outputs.rand }}
+          release_name: Release
           draft: false
           prerelease: false
 
-      - name: Rename JAR file
-        run: |
-          JAR_FILE=$(find ./build/libs -name "*.jar" -type f | head -n 1)
-          RAND_STR=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
-          NEW_NAME="6b6tcore-${RAND_STR}.jar"
-          mv $JAR_FILE ./build/libs/$NEW_NAME
-          echo "JAR_PATH=./build/libs/$NEW_NAME" >> $GITHUB_ENV
-          echo "JAR_NAME=$NEW_NAME" >> $GITHUB_ENV
-
-      - name: Upload Release Asset
+      - name: Upload JAR to Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
