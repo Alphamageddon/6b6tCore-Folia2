@@ -60,7 +60,8 @@ jobs:
       - name: Rename JAR file
         run: |
           JAR_FILE=$(find ./build/libs -name "*.jar" -type f | head -n 1)
-          NEW_NAME=$(basename $JAR_FILE .jar)-${{ steps.generate_version.outputs.VERSION }}.jar
+          RAND_STR=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
+          NEW_NAME="6b6tcore-${RAND_STR}.jar"
           mv $JAR_FILE ./build/libs/$NEW_NAME
           echo "JAR_PATH=./build/libs/$NEW_NAME" >> $GITHUB_ENV
           echo "JAR_NAME=$NEW_NAME" >> $GITHUB_ENV
