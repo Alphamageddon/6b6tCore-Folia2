@@ -9,10 +9,14 @@ import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.*;
+
 public class ChestBoatDupeListener implements Listener {
+    private final Map<UUID, Long> cooldowns = new HashMap<>();
+    private final long cooldownMillis;
 
     public ChestBoatDupeListener(long cooldownSeconds) {
-        // Cooldown logic removed
+        this.cooldownMillis = cooldownSeconds * 1000L;
     }
 
     @EventHandler
@@ -22,10 +26,16 @@ public class ChestBoatDupeListener implements Listener {
 
         Inventory inv = chestBoat.getInventory();
 
+        long last = cooldowns.getOrDefault(player.getUniqueId(), 0L);
+        long now = System.currentTimeMillis();
+        if (now - last < cooldownMillis) return;
+
         for (ItemStack item : inv.getContents()) {
             if (item != null && item.getType() != Material.AIR) {
                 player.getWorld().dropItemNaturally(player.getLocation(), item.clone());
             }
         }
+
+        cooldowns.put(player.getUniqueId(), now);
     }
 }
