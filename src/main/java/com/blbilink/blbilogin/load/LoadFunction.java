@@ -4,6 +4,7 @@ import com.blbilink.blbilogin.BlbiLogin;
 import com.blbilink.blbilogin.modules.Sqlite;
 import com.blbilink.blbilogin.modules.commands.*;
 import com.blbilink.blbilogin.modules.events.PlayerJoin;
+import com.blbilink.blbilogin.modules.events.BlockProtection;
 import com.blbilink.blbilogin.modules.events.PlayerSendMessage;
 import com.blbilink.blbilogin.modules.events.PlayerUseCommands;
 import com.blbilink.blbilogin.modules.events.PlayerInteraction;
@@ -58,6 +59,7 @@ public class LoadFunction {
         Bukkit.getPluginManager().registerEvents(new com.blbilink.blbilogin.modules.dupe.ChestBoatDupeListener(0), plugin);
         Bukkit.getPluginManager().registerEvents(new com.blbilink.blbilogin.modules.events.SpamProtection(), plugin);
         Bukkit.getPluginManager().registerEvents(new com.blbilink.blbilogin.modules.events.WitherSkullExplodeFix(), plugin);
+        Bukkit.getPluginManager().registerEvents(new BlockProtection(), plugin);
     }
 
     private void loadSqlite(){
