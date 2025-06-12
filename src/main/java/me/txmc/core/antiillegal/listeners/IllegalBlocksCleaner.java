@@ -58,7 +58,7 @@ public class IllegalBlocksCleaner implements Listener {
                             type == Material.BARRIER ||
                             type == Material.LIGHT ||
                             type == Material.END_PORTAL ||
-                            (type == Material.BEDROCK && y >= yLowerLimit + 5))) {
+                            (type == Material.BEDROCK && y > -50))) {
                         block.setType(Material.AIR);
                     }
 
