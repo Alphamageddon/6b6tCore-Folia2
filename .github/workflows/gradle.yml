@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Required for creating releases
+      contents: write  # Required for creating relea=ses
 
     steps:
       - name: Checkout code
